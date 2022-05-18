@@ -45,6 +45,11 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Azure Web App Deploy'
             inputs:
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/target/*.?(war|jar)'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
               azureSubscription: $(
 9fafb975-d34e-4e5d-8f6b-3845604321b6)
               appType: webAppLinux
